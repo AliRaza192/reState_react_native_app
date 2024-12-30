@@ -27,14 +27,14 @@ export async function login() {
       redirectUri
     );
 
-    if (!response) throw new Error("Failed to Login!");
+    if (!response) throw new Error("Create OAuth2 token failed!");
 
     const browserResult = await openAuthSessionAsync(
       response.toString(),
       redirectUri
     );
 
-    if (browserResult.type !== "success") throw new Error("Failed to Login!");
+    if (browserResult.type !== "success") throw new Error("Create OAuth2 token failed!");
 
     const url = new URL(browserResult.url);
 
@@ -62,7 +62,7 @@ export async function logout() {
   }
 }
 
-export async function getUser() {
+export async function getCurrentUser() {
   try {
     const response = await account.get();
 
